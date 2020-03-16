@@ -11,8 +11,7 @@
 # to build my simple model of an NBA playoff series based on 
 # the point differentials of the teams playing:
 
-setwd("/Users/thomasbassine/Desktop/Threes and Layups Articles/Playoff Probabilities/Data")
-y <- read.csv('playoffs_2003_2018.csv',
+y <- read.csv('https://raw.githubusercontent.com/tvbassine/NBA_Playoff_Simulator_2020/master/playoffs_2003_2018.csv',
               stringsAsFactors = F)
 y$year <- 0
 for(i in 1:nrow(y)){
@@ -30,7 +29,8 @@ model <- glm(home_win ~ net,
 # Read in current season standings (as of suspension of NBA season).
 # Get these standings in a format where they can easily be fed to my
 # simulator.
-east <- z$east
+east <- read.csv('https://raw.githubusercontent.com/tvbassine/NBA_Playoff_Simulator_2020/master/east_seeds_3_15_20.csv',
+                  stringsAsFactors = F)
 east$win_pct <- east$wins / (east$wins + east$losses)
 east$win_pct[east$Team == 'Indiana Pacers'] <- east$win_pct[east$Team == 'Indiana Pacers'] + 0.001
 east <- east[order(east$win_pct, decreasing = T),]
@@ -38,7 +38,8 @@ east$seed <- 1:nrow(east)
 east$net <- east$Point.Differential
 east$net[east$Team == 'Milwaukee Bucks'] <- 9
 
-west <- z$west
+west <- read.csv('https://raw.githubusercontent.com/tvbassine/NBA_Playoff_Simulator_2020/master/west_seeds_3_15_20.csv',
+                 stringsAsFactors = F)
 west$win_pct <- west$wins / (west$wins + west$losses)
 west$win_pct[west$Team == 'Oklahoma City Thunder'] <- west$win_pct[west$Team == 'Oklahoma City Thunder'] + 0.001
 west <- west[order(west$win_pct, decreasing = T),]
@@ -119,9 +120,23 @@ playoff_sim <- function(east, west){
   
 }
 
+set.seed(43954)
+
 out <- playoff_sim(east, west)
 out$east_3rd_rd
 out$west_3rd_rd
 out$east_4th_rd
 out$west_4th_rd
 out$champ
+
+# set.seed(100)
+# out <- rep(0, 50000)
+# for(i in 1:length(out)){
+#   temp <- playoff_sim(east, west)
+#   out[i] <- temp$champ[1,1]
+#   print(i)
+# }
+# 
+# 100 * table(out) / length(out)
+# sv <- out
+# table(sv)
