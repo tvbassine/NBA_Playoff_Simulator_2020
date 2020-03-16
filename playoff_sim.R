@@ -120,14 +120,14 @@ playoff_sim <- function(east, west){
   
 }
 
-set.seed(43954)
-
-out <- playoff_sim(east, west)
-out$east_3rd_rd
-out$west_3rd_rd
-out$east_4th_rd
-out$west_4th_rd
-out$champ
+# set.seed(43954)
+# 
+# out <- playoff_sim(east, west)
+# out$east_3rd_rd
+# out$west_3rd_rd
+# out$east_4th_rd
+# out$west_4th_rd
+# out$champ
 
 # set.seed(100)
 # out <- rep(0, 50000)
