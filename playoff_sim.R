@@ -122,49 +122,49 @@ playoff_sim <- function(east, west){
 
 # set.seed(43954)
 # 
-out <- playoff_sim(east, west)
-# out$east_3rd_rd
-# out$west_3rd_rd
-# out$east_4th_rd
-# out$west_4th_rd
-# out$champ
-
-set.seed(100)
-champ <- rep(0, 100000)
-west_champ <- rep(0, 100000)
-east_champ <- rep(0, 100000)
-for(i in 1:length(champ)){
-  temp <- playoff_sim(east, west)
-  champ[i] <- temp$champ[1,1]
-  east_champ[i] <- temp$east_4th_rd[1,1]
-  west_champ[i] <- temp$west_4th_rd[1,1]
-  print(i)
-}
-
-champ_st <- 100 * table(champ) / length(champ)
-east_st <- 100 * table(east_champ) / length(east_champ)
-west_st <- 100 * table(west_champ) / length(west_champ)
-sv <- out
-table(sv)
-
-champ_df <- data.frame(Team = names(champ_st),
-                       champ_pct = champ_st,
-                       stringsAsFactors = F)
-east_champ_df <- data.frame(Team = names(east_st),
-                           east_champ_pct = east_st,
-                           stringsAsFactors = F)
-west_champ_df <- data.frame(Team = names(west_st),
-                           west_champ_pct = west_st,
-                           stringsAsFactors = F)
-champ_df <- champ_df[,c(1,3)]
-east_champ_df <- east_champ_df[,c(1,3)]
-west_champ_df <- west_champ_df[,c(1,3)]
-colnames(champ_df)[2] <- 'NBA_Champ_Percentage'
-colnames(east_champ_df)[2] <- 'East_Champ_Percentage'
-colnames(west_champ_df)[2] <- 'West_Champ_Percentage'
-
-setwd("~/Desktop/NBA Playoff Simulator 2020/NBA_Playoff_Simulator_2020")
-
-write.csv(champ_df, 'nba_champ_probabilities.csv', row.names = F)
-write.csv(east_champ_df, 'east_champ_probabilities.csv', row.names = F)
-write.csv(west_champ_df, 'west_champ_probabilities.csv', row.names = F)
+# out <- playoff_sim(east, west)
+# # out$east_3rd_rd
+# # out$west_3rd_rd
+# # out$east_4th_rd
+# # out$west_4th_rd
+# # out$champ
+# 
+# set.seed(100)
+# champ <- rep(0, 100000)
+# west_champ <- rep(0, 100000)
+# east_champ <- rep(0, 100000)
+# for(i in 1:length(champ)){
+#   temp <- playoff_sim(east, west)
+#   champ[i] <- temp$champ[1,1]
+#   east_champ[i] <- temp$east_4th_rd[1,1]
+#   west_champ[i] <- temp$west_4th_rd[1,1]
+#   print(i)
+# }
+# 
+# champ_st <- 100 * table(champ) / length(champ)
+# east_st <- 100 * table(east_champ) / length(east_champ)
+# west_st <- 100 * table(west_champ) / length(west_champ)
+# sv <- out
+# table(sv)
+# 
+# champ_df <- data.frame(Team = names(champ_st),
+#                        champ_pct = champ_st,
+#                        stringsAsFactors = F)
+# east_champ_df <- data.frame(Team = names(east_st),
+#                            east_champ_pct = east_st,
+#                            stringsAsFactors = F)
+# west_champ_df <- data.frame(Team = names(west_st),
+#                            west_champ_pct = west_st,
+#                            stringsAsFactors = F)
+# champ_df <- champ_df[,c(1,3)]
+# east_champ_df <- east_champ_df[,c(1,3)]
+# west_champ_df <- west_champ_df[,c(1,3)]
+# colnames(champ_df)[2] <- 'NBA_Champ_Percentage'
+# colnames(east_champ_df)[2] <- 'East_Champ_Percentage'
+# colnames(west_champ_df)[2] <- 'West_Champ_Percentage'
+# 
+# setwd("~/Desktop/NBA Playoff Simulator 2020/NBA_Playoff_Simulator_2020")
+# 
+# write.csv(champ_df, 'nba_champ_probabilities.csv', row.names = F)
+# write.csv(east_champ_df, 'east_champ_probabilities.csv', row.names = F)
+# write.csv(west_champ_df, 'west_champ_probabilities.csv', row.names = F)
