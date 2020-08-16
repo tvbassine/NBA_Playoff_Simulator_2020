@@ -29,19 +29,19 @@ model <- glm(home_win ~ net,
 # Read in current season standings (as of suspension of NBA season).
 # Get these standings in a format where they can easily be fed to my
 # simulator.
-east <- read.csv('https://raw.githubusercontent.com/tvbassine/NBA_Playoff_Simulator_2020/master/east_seeds_3_15_20.csv',
+east <- read.csv('https://raw.githubusercontent.com/tvbassine/NBA_Playoff_Simulator_2020/master/east_seeds_8_16.csv',
                   stringsAsFactors = F)
 east$win_pct <- east$wins / (east$wins + east$losses)
-east$win_pct[east$Team == 'Indiana Pacers'] <- east$win_pct[east$Team == 'Indiana Pacers'] + 0.001
+# east$win_pct[east$Team == 'Indiana Pacers'] <- east$win_pct[east$Team == 'Indiana Pacers'] + 0.001
 east <- east[order(east$win_pct, decreasing = T),]
 east$seed <- 1:nrow(east)
 east$net <- east$Point.Differential
-east$net[east$Team == 'Milwaukee Bucks'] <- 9
+# east$net[east$Team == 'Milwaukee Bucks'] <- 9
 
-west <- read.csv('https://raw.githubusercontent.com/tvbassine/NBA_Playoff_Simulator_2020/master/west_seeds_3_15_20.csv',
+west <- read.csv('https://raw.githubusercontent.com/tvbassine/NBA_Playoff_Simulator_2020/master/west_seeds_8_16.csv',
                  stringsAsFactors = F)
 west$win_pct <- west$wins / (west$wins + west$losses)
-west$win_pct[west$Team == 'Oklahoma City Thunder'] <- west$win_pct[west$Team == 'Oklahoma City Thunder'] + 0.001
+# west$win_pct[west$Team == 'Oklahoma City Thunder'] <- west$win_pct[west$Team == 'Oklahoma City Thunder'] + 0.001
 west <- west[order(west$win_pct, decreasing = T),]
 west$seed <- 1:nrow(west)
 west$net <- west$Point.Differential
